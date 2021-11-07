@@ -22,7 +22,7 @@
             <img class ="docsymbol" src="../static/images/symbol.jpg" th:src="@{images/symbol.jpg}"/>
         </div>
         <div class="flex-child" id="invoice-details" align="right">
-            <h5 id="date">Date</h5>
+            <h5 id="date">Date :</h5>
             <h5 id="invoiceNo">Invoice # </h5>
         </div>
     </div>
@@ -30,15 +30,56 @@
             <table>
                 <tr>
                     <th>Category</th>
-                    <th>Charge</th>
+                    <th>Item</th>
+                    <th>Cost per Unit</th>
+                    <th>No of Units</th>
+                    <th>Cost</th>
                     <th>Comments (If Any)</th>
                 </tr>
                 <tr>
                     <td>
                         <select class=" option-css form-control"  name="testOrder">
-                            <option th:each="category : ${T(com.example.invoiceprinter.model.Category).values()}" th:value="${category}" th:text="${category.displayValue}"></option>
+                            <option th:each="category : ${T(com.example.invoiceprinter.view.Category).values()}" th:value="${category}" th:text="${category.displayValue}"></option>
                             </option>
                         </select>
+                    </td>
+                    <td>
+                        <select class=" option-css form-control"  name="testOrder">
+                            <option th:each="items : ${T(com.example.invoiceprinter.view.Items).values()}" th:value="${items}" th:text="${items.displayValue}"></option>
+                            </option>
+                        </select>
+                    </td>
+                    <td>
+                        <input min="0" name = "costPerUnit[]" class="price-align-rt" type="number">
+                    </td>
+                    <td>
+                        <input min="0" name = "noOfUnits[]" class="price-align-rt" type="number">
+                    </td>
+                    <td>
+                        <input min="0" name = "charge[]" class="price-align-rt" type="number">
+                    </td>
+                    <td>
+                        <input min="0" name = "comments[]" type="text">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select class=" option-css form-control"  name="testOrder">
+                            <option th:each="category : ${T(com.example.invoiceprinter.view.Category).values()}" th:value="${category}" th:text="${category.displayValue}"></option>
+                            </option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class=" option-css form-control"  name="testOrder">
+                            <option th:each="items : ${T(com.example.invoiceprinter.view.Items).values()}" th:value="${items}" th:text="${items.displayValue}"></option>
+                            </option>
+                        </select>
+                    </td>
+                    <td>
+                        <input name = "costPerUnit[]" class="price-align-rt" type="number">
+                    </td>
+                    <td>
+                        <input name = "noOfUnits[]" class="price-align-rt" type="number">
                     </td>
                     <td>
                         <input name = "charge[]" class="price-align-rt" type="number">
@@ -49,10 +90,22 @@
                 </tr>
                 <tr>
                     <td>
-                        <select class="option-css form-control" name="testOrder">
-                            <option th:each="category : ${T(com.example.invoiceprinter.model.Category).values()}" th:value="${category}" th:text="${category.displayValue}"></option>
+                        <select class=" option-css form-control"  name="testOrder">
+                            <option th:each="category : ${T(com.example.invoiceprinter.view.Category).values()}" th:value="${category}" th:text="${category.displayValue}"></option>
                             </option>
                         </select>
+                    </td>
+                    <td>
+                        <select class=" option-css form-control"  name="testOrder">
+                            <option th:each="items : ${T(com.example.invoiceprinter.view.Items).values()}" th:value="${items}" th:text="${items.displayValue}"></option>
+                            </option>
+                        </select>
+                    </td>
+                    <td>
+                        <input name = "costPerUnit[]" class="price-align-rt" type="number">
+                    </td>
+                    <td>
+                        <input name = "noOfUnits[]" class="price-align-rt" type="number">
                     </td>
                     <td>
                         <input name = "charge[]" class="price-align-rt" type="number">
@@ -63,10 +116,22 @@
                 </tr>
                 <tr>
                     <td>
-                        <select class="option-css form-control" name="testOrder">
-                            <option th:each="category : ${T(com.example.invoiceprinter.model.Category).values()}" th:value="${category}" th:text="${category.displayValue}"></option>
+                        <select class=" option-css form-control"  name="testOrder">
+                            <option th:each="category : ${T(com.example.invoiceprinter.view.Category).values()}" th:value="${category}" th:text="${category.displayValue}"></option>
                             </option>
                         </select>
+                    </td>
+                    <td>
+                        <select class=" option-css form-control"  name="testOrder">
+                            <option th:each="items : ${T(com.example.invoiceprinter.view.Items).values()}" th:value="${items}" th:text="${items.displayValue}"></option>
+                            </option>
+                        </select>
+                    </td>
+                    <td>
+                        <input size="100000" name = "costPerUnit[]" class="price-align-rt" type="number">
+                    </td>
+                    <td>
+                        <input size="100000" name = "noOfUnits[]" class="price-align-rt" type="number">
                     </td>
                     <td>
                         <input name = "charge[]" class="price-align-rt" type="number">
@@ -75,36 +140,40 @@
                         <input name = "comments[]" type="text">
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        <select class=" option-css form-control" id="testOrder" name="testOrder">
-                            <option th:each="category : ${T(com.example.invoiceprinter.model.Category).values()}" th:value="${category}" th:text="${category.displayValue}"></option>
-                            </option>
-                        </select>
-                    </td>
-                    <td>
-                        <input name = "charge[]" class="price-align-rt" type="number">
-                    </td>
-                    <td>
-                        <input name = "comments[]" type="text">
-                    </td>
-                </tr>
-                <tr>
-                    <td class="txt-align-left">
-                        Total
-                    </td>
-                    <td id="totalAmount" class="price-align-rt">
-                    </td>
-                </tr>
+
             </table>
         </div>
+    <div id="calclationPart" class="flex-container">
+        <table>
+           <tr>
+               <td><span id="grossAmount">Gross Amount: </span></td>
+               <td><span id="grossAmountValue">Gross Amount: </span></td>
+           </tr>
+            <tr>
+                <td><span id="rebatePercentage">Rebate percent </span></td>
+                <td><span id="rebatePercentageValue"><input name = "rebatePercentInput" class="price-align-rt" type="number"> </span></td>
+            </tr>
+            <tr>
+                <td><span id="netAmount">Net Amount </span></td>
+                <td><span id="netAmountValue"></span></td>
+            </tr>
+        </table>
+    </div>
     <div class="flex-container">
         <span id="amountInWords"></span>
+    </div>
+    <div class="flex-container-sign">
+        <span id="signature">Signature</span>
+    </div>
+    <br>
+    <div class="flex-container-sign">
+        <span id="name">Dr. J Appa Rao</span>
     </div>
 </div>
     <div class="flex-container">
         <button id="clearButton" class="btn-spacing btn btn-danger">Clear All</button>
         <button id="searchButton" class="btn-spacing btn btn-info">Search Invoices</button>
+        <button id="calculateButton" class="btn-spacing btn btn-danger">Calculate</button>
         <button id="printButton" class="btn-spacing btn btn-primary">Save and print</button>
     </div>
 </body>

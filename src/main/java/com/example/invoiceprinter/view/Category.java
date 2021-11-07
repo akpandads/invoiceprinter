@@ -1,4 +1,4 @@
-package com.example.invoiceprinter.model;
+package com.example.invoiceprinter.view;
 
 public enum Category {
     NONE(""),
